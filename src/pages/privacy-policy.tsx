@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <div className="flex max-w-4xl flex-col items-center justify-center text-center">
               <h1 className="p-20 text-6xl text-white">Privacy Policy</h1>
               <p className="py-5 text-white">
-                Spotify was developed as an open source app powered by the
+                Imagify was developed as an open source app powered by the
                 Spotify Web API.
               </p>
               <p className="py-5 text-white">
@@ -57,7 +57,7 @@ const Home: NextPage = () => {
             <div className="flex max-w-4xl flex-col items-center justify-center text-center">
               <h1 className="p-20 text-6xl text-white">Privacy Policy</h1>
               <p className="py-5 text-white">
-                Spotify was developed as an open source app powered by the
+                Imagify was developed as an open source app powered by the
                 Spotify Web API.
               </p>
               <p className="py-5 text-white">
