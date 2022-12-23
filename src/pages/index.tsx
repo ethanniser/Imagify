@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
@@ -65,6 +65,9 @@ const Home: NextPage = () => {
             height={1500}
             className="absolute bottom-0 left-0 z-10"
           />
+          <button className="border-4" onClick={() => signOut()}>
+            sign out
+          </button>
         </main>
       </>
     );
