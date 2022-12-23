@@ -19,21 +19,21 @@ const Home: NextPage = () => {
           <Navbar />
           <div className="flex items-center justify-center">
             <div className="flex max-w-4xl flex-col items-center justify-center text-center">
-              <h1 className="p-20 text-6xl text-white">Privacy Policy</h1>
-              <p className="py-5 text-white">
+              <h1 className="p-20 text-6xl text-zinc-100">Privacy Policy</h1>
+              <p className="py-5 text-zinc-100">
                 Imagify was developed as an open source app powered by the
                 Spotify Web API.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 By choosing to use this app, you agree to the use of your
                 Spotify account username and data for your top 10 tracks.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 None of the data used by Imagify is stored or collected and is
                 not shared with any third parties. All information is used
                 solely for displaying your collage.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 Although you can rest assured that your data is not being stored
                 or used maliciously, if you would like to revoke Imagifys
                 permissions, here is a guide for doing so.
@@ -55,21 +55,21 @@ const Home: NextPage = () => {
           <Navbar />
           <div className="flex items-center justify-center">
             <div className="flex max-w-4xl flex-col items-center justify-center text-center">
-              <h1 className="p-20 text-6xl text-white">Privacy Policy</h1>
-              <p className="py-5 text-white">
+              <h1 className="p-20 text-6xl text-zinc-100">Privacy Policy</h1>
+              <p className="py-5 text-zinc-100">
                 Imagify was developed as an open source app powered by the
                 Spotify Web API.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 By choosing to use this app, you agree to the use of your
                 Spotify account username and data for your top 10 tracks.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 None of the data used by Imagify is stored or collected and is
                 not shared with any third parties. All information is used
                 solely for displaying your collage.
               </p>
-              <p className="py-5 text-white">
+              <p className="py-5 text-zinc-100">
                 Although you can rest assured that your data is not being stored
                 or used maliciously, if you would like to revoke Imagifys
                 permissions, here is a guide for doing so.
