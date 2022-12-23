@@ -18,20 +18,26 @@ const Home: NextPage = () => {
         </Head>
         <main className="z-0 min-h-screen bg-neutral-900">
           <Navbar />
-          <Blob />
-          <button
-            className="absolute left-0 right-0 top-[36rem] z-20 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
-            onClick={() => signIn()}
-          >
-            <span className="">Login</span>
-          </button>
-          <Image
-            src="/wave.svg"
-            alt="wavey lines"
-            width={1500}
-            height={1500}
-            className="absolute bottom-0 left-0 z-10"
-          />
+          <div className="flex flex-col items-center justify-center">
+            <div className="mt-20">
+              <Blob />
+            </div>
+            <div className="mt-20">
+              <button
+                className="z-30 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
+                onClick={() => signIn()}
+              >
+                <span className="">Login</span>
+              </button>
+            </div>
+            <Image
+              src="/wave.svg"
+              alt="wavey lines"
+              width={1500}
+              height={1500}
+              className="pointer-events-none absolute bottom-0 left-0"
+            />
+          </div>
         </main>
       </>
     );
@@ -53,24 +59,28 @@ const Home: NextPage = () => {
             className="absolute top-10 right-10 z-20"
           />
           <button
-            className="absolute left-0 right-0 top-[36rem] z-20 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
-            onClick={() => signIn()}
-          >
-            <span className="">New Collage</span>
-          </button>
-          <Image
-            src="/wave.svg"
-            alt="wavey lines"
-            width={1500}
-            height={1500}
-            className="absolute bottom-0 left-0 z-10"
-          />
-          <button
             className="absolute right-14 top-48 z-20 flex w-fit rounded-full bg-white px-4 py-2 hover:bg-neutral-300"
             onClick={() => signOut()}
           >
             Sign Out
           </button>
+          <div className="flex flex-col items-center justify-center">
+            <div className="mt-20">
+              <Blob />
+            </div>
+            <div className="mt-20">
+              <button className="z-30 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300">
+                <span className="font-medium">New Collage</span>
+              </button>
+            </div>
+            <Image
+              src="/wave.svg"
+              alt="wavey lines"
+              width={1500}
+              height={1500}
+              className="pointer-events-none absolute bottom-0 left-0"
+            />
+          </div>
         </main>
       </>
     );
