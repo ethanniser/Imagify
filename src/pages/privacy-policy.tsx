@@ -1,12 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
 
 import Navbar from "@components/Navbar";
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
   return (
     <>
       <Head>
@@ -38,15 +35,6 @@ const Home: NextPage = () => {
             </p>
           </div>
         </div>
-        {session && (
-          <Image
-            src="/defaultPFP.png"
-            alt="profile picture"
-            width={150}
-            height={150}
-            className="absolute top-10 right-10 z-20"
-          />
-        )}
       </main>
     </>
   );
