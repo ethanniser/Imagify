@@ -65,8 +65,11 @@ const Home: NextPage = () => {
             height={1500}
             className="absolute bottom-0 left-0 z-10"
           />
-          <button className="border-4" onClick={() => signOut()}>
-            sign out
+          <button
+            className="absolute right-14 top-48 z-20 flex w-fit rounded-full bg-white px-4 py-2 hover:bg-neutral-300"
+            onClick={() => signOut()}
+          >
+            Sign Out
           </button>
         </main>
       </>
