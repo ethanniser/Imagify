@@ -1,10 +1,8 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
-import { trpc } from "@utils/trpc";
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
 
