@@ -32,7 +32,9 @@ const Home: NextPage = () => {
             ) : (
               <button
                 className="z-30 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
-                onClick={() => signIn()}
+                onClick={() =>
+                  window.alert("Not implemented yet, soon though :)")
+                }
               >
                 <span className="">New Image</span>
               </button>
