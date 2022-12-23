@@ -20,8 +20,7 @@ const Home: NextPage = () => {
           <div className="flex max-w-4xl flex-col items-center justify-center text-center">
             <h1 className="p-20 text-6xl text-zinc-100">Privacy Policy</h1>
             <p className="py-5 text-zinc-100">
-              Imagify was developed as an open source app powered by the Spotify
-              Web API.
+              Imagify was developed as an app powered by the Spotify Web API.
             </p>
             <p className="py-5 text-zinc-100">
               By choosing to use this app, you agree to the use of your Spotify
