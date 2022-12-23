@@ -3,12 +3,11 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
-import { Open_Sans } from "@next/font/google";
+import { Unbounded } from "@next/font/google";
 
 import "../styles/globals.css";
 
-const openSans = Open_Sans({
-  weight: "400",
+const unbounded = Unbounded({
   subsets: ["latin"],
 });
 
@@ -18,7 +17,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <main className={openSans.className}>
+      <main className={unbounded.className}>
         <Component {...pageProps} />
       </main>
     </SessionProvider>
