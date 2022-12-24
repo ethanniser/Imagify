@@ -2,6 +2,40 @@ import { router, protectedProcedure } from "../trpc";
 import { getAccessToken } from "@utils/spotify";
 import { z } from "zod";
 
+type spotifyTopResponse = {
+  items: [
+    {
+      external_urls: {
+        spotify: string;
+      };
+      followers: {
+        href: null;
+        total: number;
+      };
+      genres: string[];
+      href: string;
+      id: string;
+      images: [
+        {
+          height: number;
+          url: string;
+          width: number;
+        }
+      ];
+      name: string;
+      popularity: number;
+      type: string;
+      uri: string;
+    }
+  ];
+  limit: number;
+  offset: number;
+  total: number;
+  href: string;
+  previous: string | null;
+  next: string | null;
+};
+
 export const spotifyRouter = router({
   getTopArtists: protectedProcedure
     .input(z.object({ type: z.enum(["artists", "tracks"]) }))
@@ -32,7 +66,7 @@ export const spotifyRouter = router({
           },
         }
       );
-      const { items } = await response.json();
-      return items;
+      const res = await response.json();
+      return res as spotifyTopResponse;
     }),
 });

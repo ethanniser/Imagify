@@ -1,6 +1,5 @@
 import { type FC } from "react";
 import { trpc } from "../utils/trpc";
-import { openai } from "../server/common/openaiClient";
 
 const Test: FC = () => {
   const { data, isLoading } = trpc.spotify.getTopArtists.useQuery({
@@ -12,7 +11,7 @@ const Test: FC = () => {
   else {
     if (!data) return <div>no data</div>;
     else {
-      const names = data.map((item) => <div>{item.name}</div>);
+      const names = data.items.map((item) => <div>{item.name}</div>);
       return (
         <>
           <div>{names}</div>
