@@ -6,7 +6,22 @@ export const spotifyRouter = router({
     const account = await ctx.prisma.account.findFirstOrThrow({
       where: { userId: ctx.session.user.id },
     });
-    const token = await getAccessToken(account);
+    const expires = account.expires_at ?? 0;
+    if (expires < Date.now()) {
+      const { access_token: newToken, expires_in } = await getAccessToken(
+        account
+      );
+      const newExpire = Math.floor(Date.now() / 1000) + expires_in;
+      console.log("HIHIHIHIHI", newExpire);
+      await ctx.prisma.account.update({
+        where: { id: account.id },
+        data: {
+          access_token: newToken,
+          expires_at: newExpire,
+        },
+      });
+    }
+    const token = account.access_token;
     const response = await fetch(
       `https://api.spotify.com/v1/me/top/artists?limit=20&time_range=long_term`,
       {
