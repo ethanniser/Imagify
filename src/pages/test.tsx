@@ -1,5 +1,4 @@
 import { type FC } from "react";
-import { trpc } from "../utils/trpc";
 
 const test: FC = () => {
   // const { data, isLoading } = trpc.spotify.getUser.useQuery();
