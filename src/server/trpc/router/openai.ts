@@ -1,7 +1,7 @@
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
 
-type openAIResponse = {
+type openAICompletionResponse = {
   id: string;
   object: string;
   created: number;
@@ -21,15 +21,37 @@ type openAIResponse = {
   };
 };
 
+type openAIImageResponse = {
+  created: number;
+  data: [
+    {
+      url: string;
+    }
+  ];
+};
+
 export const openaiRouter = router({
-  getGptResponse: protectedProcedure
+  getGptCompletion: protectedProcedure
     .input(z.object({ prompt: z.string() }))
     .query(async ({ input, ctx }) => {
       const response = await ctx.openai.createCompletion({
         model: "text-davinci-003",
         prompt: input.prompt,
       });
-      const result = response.data as openAIResponse;
+      const result = response.data as openAICompletionResponse;
       return result.choices[0].text;
+    }),
+  getGptImage: protectedProcedure
+    .input(z.object({ prompt: z.string() }))
+    .query(async ({ input, ctx }) => {
+      const start = Date.now();
+      console.log("started", start);
+      const response = await ctx.openai.createImage({
+        prompt: input.prompt,
+        size: "512x512",
+      });
+      const result = response.data as openAIImageResponse;
+      console.log(result, Date.now());
+      return result.data[0].url;
     }),
 });
