@@ -34,32 +34,79 @@ const Test: FC = () => {
   //     )}
   //   </>
   // );
-  //GPT TEXT
+  //*GPT TEXT
   const [GPTout, setGPTout] = useState<string>("click the button");
-  const [GPTin, setGPTin] = useState<string>("");
+  const [input, setInput] = useState<string>("");
   const GPTmutation = trpc.openai.getGptCompletion.useMutation();
   const handlePrompt = async () => {
     GPTmutation.mutate(
-      { prompt: GPTin },
+      { prompt: input },
       { onSuccess: (data) => setGPTout(data) }
     );
   };
+
+  //*GPT IMAGE
+  const [DALLEimg, setDALLEimg] = useState<string>("");
+  const DALLEimgMutation = trpc.openai.getGptImage.useMutation();
+  const handleImgPrompt = async () => {
+    DALLEimgMutation.mutate(
+      { prompt: input },
+      { onSuccess: (data) => setDALLEimg(data) }
+    );
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-pink-300">
-      <div className="flex flex-col items-center justify-center">
-        <input
-          type="text"
-          onChange={(e) => setGPTin(e.target.value)}
-          placeholder="write a poem about..."
-          className="m-4 rounded-lg bg-pink-100 px-4 py-3"
-        />
-        <button
-          onClick={handlePrompt}
-          className="rounded-lg bg-red-600 px-4 py-3 text-white"
-        >
-          send to GPT for response
-        </button>
-        <div className="m-4">{GPTout}</div>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-pink-300">
+      <input
+        type="text"
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="your input here"
+        className=" rounded-lg bg-pink-100 px-4 py-3"
+      />
+      {!input && <div className="text-red-600">input required</div>}
+      <div className="mt-4">
+        <div className="flex flex-col items-center justify-center">
+          <button
+            onClick={handlePrompt}
+            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-500"
+            disabled={GPTmutation.isLoading || input === ""}
+          >
+            send to GPT for{" "}
+            <span className="font-bold text-green-400">text</span> response
+          </button>
+          <div className="m-4">
+            <span className="font-bold text-red-600">GPT: </span>
+            {GPTout}
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <button
+            onClick={handleImgPrompt}
+            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-500"
+            disabled={DALLEimgMutation.isLoading || input === ""}
+          >
+            send to DALLE for{" "}
+            <span className="font-bold text-green-400">image</span> response
+          </button>
+          <div className="m-4">
+            <span className="font-bold text-red-600">DALLE: </span>
+            {DALLEimg === "" &&
+              !DALLEimgMutation.isLoading &&
+              !DALLEimgMutation.isError &&
+              "click the button"}
+            {DALLEimgMutation.isLoading && "loading image..."}
+            {DALLEimgMutation.isError &&
+              " Error loading image: " + DALLEimgMutation.error.message}
+          </div>
+          {DALLEimg && (
+            <Image
+              src={DALLEimg}
+              alt="generated image"
+              height={512}
+              width={512}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
