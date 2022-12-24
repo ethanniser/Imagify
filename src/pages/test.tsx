@@ -35,7 +35,7 @@ const Test: FC = () => {
   //   </>
   // );
   //*GPT TEXT
-  const [GPTout, setGPTout] = useState<string>("click the button");
+  const [GPTout, setGPTout] = useState<string>();
   const [input, setInput] = useState<string>("");
   const GPTmutation = trpc.openai.getGptCompletion.useMutation();
   const handlePrompt = async () => {
@@ -76,7 +76,14 @@ const Test: FC = () => {
           </button>
           <div className="m-4">
             <span className="font-bold text-red-600">GPT: </span>
-            {GPTout}
+            {!GPTout &&
+              !GPTmutation.isLoading &&
+              !GPTmutation.isError &&
+              "click the button"}
+            {GPTmutation.isLoading && "loading text..."}
+            {GPTmutation.isError &&
+              " Error loading text: " + GPTmutation.error.message}
+            {GPTout && GPTout}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
