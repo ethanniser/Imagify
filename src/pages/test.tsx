@@ -68,7 +68,7 @@ const Test: FC = () => {
         <div className="flex flex-col items-center justify-center">
           <button
             onClick={handlePrompt}
-            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-500"
+            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-400"
             disabled={GPTmutation.isLoading || input === ""}
           >
             send to GPT for{" "}
@@ -89,7 +89,7 @@ const Test: FC = () => {
         <div className="flex flex-col items-center justify-center">
           <button
             onClick={handleImgPrompt}
-            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-500"
+            className="rounded-lg bg-red-600 px-4 py-3 text-white hover:bg-red-800 disabled:bg-red-400"
             disabled={DALLEimgMutation.isLoading || input === ""}
           >
             send to DALLE for{" "}
