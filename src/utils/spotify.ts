@@ -6,7 +6,7 @@ const basic = Buffer.from(
 ).toString("base64");
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
-type spotifyResponse = {
+type spotifyRefeshTokenResponse = {
   access_token: string;
   token_type: string;
   scope: string;
@@ -26,6 +26,6 @@ export const getAccessToken = async (account: Account) => {
       refresh_token: account.refresh_token,
     }),
   });
-  const res: spotifyResponse = await response.json();
+  const res: spotifyRefeshTokenResponse = await response.json();
   return res;
 };
