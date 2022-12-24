@@ -10,7 +10,7 @@ const Navbar: FC = () => {
     <nav className="flex w-screen items-center justify-between bg-neutral-900 px-10 py-6">
       <div className="flex-1">
         <Link href="/">
-          <span className="bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-3xl font-bold text-transparent">
+          <span className="bg-gradient-to-r from-sky-400 to-fuchsia-600 bg-clip-text text-3xl font-bold text-transparent">
             Imagify
           </span>
         </Link>
