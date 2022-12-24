@@ -36,7 +36,7 @@ type spotifyTopArtistsResponse = {
 };
 
 export const spotifyRouter = router({
-  getTopArtists: protectedProcedure.query(async ({ ctx }) => {
+  getTopArtists: protectedProcedure.mutation(async ({ ctx }) => {
     const account = await ctx.prisma.account.findFirstOrThrow({
       where: { userId: ctx.session.user.id },
     });

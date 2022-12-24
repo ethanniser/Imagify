@@ -33,7 +33,7 @@ type openAIImageResponse = {
 export const openaiRouter = router({
   getGptCompletion: protectedProcedure
     .input(z.object({ prompt: z.string() }))
-    .query(async ({ input, ctx }) => {
+    .mutation(async ({ input, ctx }) => {
       const response = await ctx.openai.createCompletion({
         model: "text-davinci-003",
         prompt: input.prompt,
@@ -43,7 +43,7 @@ export const openaiRouter = router({
     }),
   getGptImage: protectedProcedure
     .input(z.object({ prompt: z.string() }))
-    .query(async ({ input, ctx }) => {
+    .mutation(async ({ input, ctx }) => {
       const start = Date.now();
       console.log("started", start);
       const response = await ctx.openai.createImage({
