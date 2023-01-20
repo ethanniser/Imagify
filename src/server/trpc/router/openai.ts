@@ -30,6 +30,8 @@ type openAIImageResponse = {
   ];
 };
 
+// !TODO add output validation
+// !TODO use fetch instead of openai npm package
 export const openaiRouter = router({
   getGptCompletion: protectedProcedure
     .input(z.object({ prompt: z.string() }))

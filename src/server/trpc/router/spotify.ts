@@ -35,6 +35,7 @@ type spotifyTopArtistsResponse = {
   next: string | null;
 };
 
+// !TODO add output validation
 export const spotifyRouter = router({
   getTopArtists: protectedProcedure.mutation(async ({ ctx }) => {
     const account = await ctx.prisma.account.findFirstOrThrow({
