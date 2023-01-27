@@ -8,6 +8,7 @@ import { Dna } from "react-loader-spinner";
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
 import type { Session } from "next-auth";
+import Wave from "@components/Wave";
 
 interface Props {
   initialSession: Session | null;
@@ -100,13 +101,14 @@ const Home: NextPage<Props> = ({ initialSession }) => {
           </div>
         </div>
         {/* !TODO fix overlap on z */}
-        <Image
+        {/* <Image
           src="/wave.svg"
           alt="wavey lines"
           width={1500}
           height={1500}
           className="pointer-events-none absolute bottom-0 left-0"
-        />
+        /> */}
+        <Wave className="pointer-events-none absolute bottom-0 left-0" />
       </main>
     </>
   );
