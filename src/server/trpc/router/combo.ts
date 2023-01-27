@@ -47,17 +47,26 @@ export const comboRouter = router({
           })
         );
       const spotifyFinalGenres = temp.join(",");
-      const gptResponse = await ctx.openai.createCompletion({
+      const gptResponse1 = await ctx.openai.createCompletion({
         model: "text-davinci-003",
-        prompt: spotifyFinalGenres,
-        max_tokens: 60,
+        prompt: `describe the mood of these genres of music: ${spotifyFinalGenres} as a single series of feelings`,
+        max_tokens: 40,
         temperature: 0.9,
       });
-      const gptResult = gptResponse.data as openAICompletionResponse;
-      const gptFinal = gptResult.choices[0].text;
-      console.log(gptFinal);
+      const gptResult1 = gptResponse1.data as openAICompletionResponse;
+      const gptFinal1 = gptResult1.choices[0].text;
+      console.log(gptFinal1);
+      const gptResponse2 = await ctx.openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `in detail, describe an image that embodies these moods/feelings: ${gptFinal1}`,
+        max_tokens: 75,
+        temperature: 1,
+      });
+      const gptResult2 = gptResponse2.data as openAICompletionResponse;
+      const gptFinal2 = gptResult2.choices[0].text;
+      console.log(gptFinal2);
       const dalleResponse = await ctx.openai.createImage({
-        prompt: gptFinal,
+        prompt: gptFinal2 + "digital art",
         size: "512x512",
       });
       const dalleResult = dalleResponse.data as openAIImageResponse;
