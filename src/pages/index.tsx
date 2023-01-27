@@ -18,7 +18,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
   if (!session) {
     session = initialSession;
   }
-  const [url, setUrl] = useState<string>("/openAiPlaceholder.png");
+  const [url, setUrl] = useState<string>("/placeholder.png");
   const imageMutation = trpc.combo.getNewImage.useMutation({
     onSuccess: (data) => {
       setUrl(data);
