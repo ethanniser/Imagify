@@ -4,7 +4,7 @@ import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { trpc } from "@utils/trpc";
 import { useState } from "react";
-
+import { Dna } from "react-loader-spinner";
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
 import type { Session } from "next-auth";
@@ -25,6 +25,8 @@ const Home: NextPage<Props> = ({ initialSession }) => {
     },
   });
 
+  const [used, setUsed] = useState<boolean>(false);
+
   return (
     <>
       <Head>
@@ -41,6 +43,10 @@ const Home: NextPage<Props> = ({ initialSession }) => {
           {!session ? (
             <div className="mt-20">
               <Blob />
+            </div>
+          ) : imageMutation.isLoading ? (
+            <div className="mt-14 flex min-h-[512px] min-w-[512px] items-center justify-center">
+              <Dna height={300} width={300} />
             </div>
           ) : (
             <Image
@@ -72,17 +78,19 @@ const Home: NextPage<Props> = ({ initialSession }) => {
               </button>
             ) : (
               <button
-                className="mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
+                className="mx-auto flex w-fit rounded-full bg-gradient-to-r from-sky-400 to-fuchsia-600 px-16 py-4 hover:scale-110 disabled:bg-neutral-300"
                 onClick={() => {
                   imageMutation.mutate();
+                  setUsed(true);
                 }}
+                disabled={imageMutation.isLoading}
               >
                 {imageMutation.isLoading ? (
                   <p>Generating...</p>
                 ) : imageMutation.isError ? (
-                  <p>Error- Please try again.</p>
+                  <p className="text-red">Error- Please try again.</p>
                 ) : (
-                  <p>Generate Image</p>
+                  <p>Generate {used && "Another "}Image</p>
                 )}
               </button>
             )}
