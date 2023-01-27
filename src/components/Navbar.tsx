@@ -5,7 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import type { Session } from "next-auth";
 
 interface Props {
-  initialSession: Session;
+  initialSession: Session | null;
 }
 
 const Navbar: FC<Props> = ({ initialSession }) => {

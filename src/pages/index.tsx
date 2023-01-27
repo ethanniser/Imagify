@@ -10,7 +10,7 @@ import Blob from "@components/Blob";
 import type { Session } from "next-auth";
 
 interface Props {
-  initialSession: Session;
+  initialSession: Session | null;
 }
 
 const Home: NextPage<Props> = ({ initialSession }) => {
@@ -112,15 +112,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res,
     authOptions
   );
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 
   return {
     props: {
