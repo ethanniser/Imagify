@@ -96,4 +96,46 @@ export const spotifyRouter = router({
       const res = (await response.json()) as spotifyTopArtistsResponse;
       return res.items;
     }),
+  getTopGenres: protectedProcedure
+    .output(z.string())
+    .mutation(async ({ ctx }) => {
+      const account = await ctx.prisma.account.findFirstOrThrow({
+        where: { userId: ctx.session.user.id },
+      });
+      const expires = account.expires_at ?? 0;
+      if (expires < Date.now()) {
+        const { access_token: newToken, expires_in } = await getAccessToken(
+          account
+        );
+        const newExpire = Math.floor(Date.now() / 1000) + expires_in;
+        await ctx.prisma.account.update({
+          where: { id: account.id },
+          data: {
+            access_token: newToken,
+            expires_at: newExpire,
+          },
+        });
+      }
+      const token = account.access_token;
+      const response = await fetch(
+        `https://api.spotify.com/v1/me/top/artists?limit=3&time_range=long_term`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const res = (await response.json()) as spotifyTopArtistsResponse;
+      const temp: string[] = [];
+      res.items
+        .map((artist) => artist.genres)
+        .forEach((genre) =>
+          genre.forEach((g) => {
+            if (!temp.includes(g)) {
+              temp.push(g);
+            }
+          })
+        );
+      return temp.join(", ");
+    }),
 });

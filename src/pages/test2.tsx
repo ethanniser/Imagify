@@ -3,19 +3,9 @@ import { trpc } from "../utils/trpc";
 
 const Test2: FC = () => {
   const [spotify, setSpotify] = useState<string>("");
-  const spotifyMutation = trpc.spotify.getTopArtists.useMutation({
+  const spotifyMutation = trpc.spotify.getTopGenres.useMutation({
     onSuccess: (data) => {
-      const temp: string[] = [];
-      data
-        .map((artist) => artist.genres)
-        .forEach((genre) =>
-          genre.forEach((g) => {
-            if (!temp.includes(g)) {
-              temp.push(g);
-            }
-          })
-        );
-      setSpotify(temp.join(", "));
+      setSpotify(data);
     },
   });
 
