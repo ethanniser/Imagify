@@ -7,9 +7,17 @@ import { useState } from "react";
 
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
+import type { Session } from "next-auth";
 
-const Home: NextPage = () => {
-  const { data: session } = useSession();
+interface Props {
+  initialSession: Session;
+}
+
+const Home: NextPage<Props> = ({ initialSession }) => {
+  let { data: session } = useSession();
+  if (!session) {
+    session = initialSession;
+  }
   const [url, setUrl] = useState<string>("/openAiPlaceholder.png");
   const imageMutation = trpc.combo.getNewImage.useMutation({
     onSuccess: (data) => {
@@ -93,3 +101,30 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+import { authOptions } from "pages/api/auth/[...nextauth]";
+import { unstable_getServerSession } from "next-auth/next";
+import type { GetServerSideProps } from "next";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      initialSession: session,
+    },
+  };
+};
