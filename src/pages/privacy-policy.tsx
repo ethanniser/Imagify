@@ -1,16 +1,12 @@
 import { type NextPage } from "next";
-import Head from "next/head";
+import SharedHead from "@components/SharedHead";
 import Navbar from "@components/Navbar";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Imagify</title>
-        <meta name="description" content="Imagify's Privacy Policy" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="z-0 min-h-screen bg-neutral-900">
+      <SharedHead />
+      <div className="z-0 min-h-screen bg-neutral-900">
         <Navbar />
         <div className="flex items-center justify-center">
           <div className="flex max-w-4xl flex-col items-center justify-center text-center">
@@ -44,7 +40,7 @@ const Home: NextPage = () => {
             </p>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import Head from "next/head";
+import SharedHead from "@components/SharedHead";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { trpc } from "@utils/trpc";
@@ -44,15 +44,8 @@ const Home: NextPage<Props> = ({ initialSession }) => {
 
   return (
     <>
-      <Head>
-        <title>Imagify</title>
-        <meta
-          name="description"
-          content="A site that creates images based off your Spotify!"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="min-h-screen bg-neutral-900">
+      <SharedHead />
+      <div className="min-h-screen bg-neutral-900">
         <Navbar initialSession={initialSession} />
         <div className="flex flex-col items-center justify-center">
           {!session ? (
@@ -113,7 +106,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
         </div>
         {/* !TODO fix overlap on z */}
         <Wave className="pointer-events-none absolute bottom-0 left-0" />
-      </main>
+      </div>
     </>
   );
 };
