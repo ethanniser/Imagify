@@ -23,6 +23,9 @@ const Home: NextPage<Props> = ({ initialSession }) => {
     onSuccess: (data) => {
       setUrl(data);
     },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   const [used, setUsed] = useState<boolean>(false);
