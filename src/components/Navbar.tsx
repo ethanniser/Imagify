@@ -8,7 +8,7 @@ interface Props {
   initialSession: Session | null;
 }
 
-const Navbar: FC<Props> = ({ initialSession }) => {
+const Navbar: FC<Props> = ({ initialSession = null }) => {
   let { data: session } = useSession();
   if (!session) {
     session = initialSession;
