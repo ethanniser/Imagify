@@ -47,6 +47,7 @@ export const comboRouter = router({
           })
         );
       const spotifyFinalGenres = temp.join(",");
+      console.log(spotifyFinalGenres);
       const gptResponse1 = await ctx.openai.createCompletion({
         model: "text-davinci-003",
         prompt: `describe the mood of these genres of music: ${spotifyFinalGenres} as a single series of feelings`,
