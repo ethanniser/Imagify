@@ -27,14 +27,25 @@ const Home: NextPage = () => {
           <div className="mt-20">
             {!session ? (
               <button
-                className="z-30 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
+                className="mx-auto flex w-fit rounded-full bg-white px-10 py-2 hover:bg-neutral-300"
                 onClick={() => signIn()}
               >
-                <span className="">Login</span>
+                <div className="flex items-center ">
+                  <p>Login with </p>
+                  <div className="ml-2 rounded-xl bg-spotify-green p-2">
+                    <Image
+                      src="/spotify.webp"
+                      alt="spotify logo"
+                      width={100}
+                      height={30}
+                      className="inline-block"
+                    />
+                  </div>
+                </div>
               </button>
             ) : (
               <button
-                className="z-30 mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
+                className="mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
                 onClick={() =>
                   window.alert("Not implemented yet, soon though :)")
                 }
