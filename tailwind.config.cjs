@@ -6,6 +6,9 @@ module.exports = {
       colors: {
         "spotify-green": "#1DB954",
       },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
     },
   },
   plugins: [],
