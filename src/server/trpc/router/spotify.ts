@@ -2,7 +2,7 @@ import { router, protectedProcedure } from "../trpc";
 import { getAccessToken } from "@utils/spotify";
 import { z } from "zod";
 
-type spotifyTopArtistsResponse = {
+export type spotifyTopArtistsResponse = {
   items: [
     {
       external_urls: {

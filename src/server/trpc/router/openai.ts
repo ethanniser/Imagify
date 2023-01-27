@@ -1,7 +1,7 @@
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
 
-type openAICompletionResponse = {
+export type openAICompletionResponse = {
   id: string;
   object: string;
   created: number;
@@ -21,7 +21,7 @@ type openAICompletionResponse = {
   };
 };
 
-type openAIImageResponse = {
+export type openAIImageResponse = {
   created: number;
   data: [
     {
@@ -49,8 +49,6 @@ export const openaiRouter = router({
     .input(z.object({ prompt: z.string() }))
     .output(z.string())
     .mutation(async ({ input, ctx }) => {
-      const start = Date.now();
-      console.log("started", start);
       const response = await ctx.openai.createImage({
         prompt: input.prompt,
         size: "512x512",
