@@ -38,7 +38,7 @@ export const openaiRouter = router({
       const response = await ctx.openai.createCompletion({
         model: "text-davinci-003",
         prompt: input.prompt,
-        max_tokens: 20,
+        max_tokens: 60,
         temperature: 0.9,
       });
       console.log(response.data);

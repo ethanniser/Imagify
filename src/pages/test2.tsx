@@ -9,16 +9,29 @@ const Test2: FC = () => {
     },
   });
 
-  const handleClick = () => {
-    spotifyMutation.mutate();
+  const [gpt, setGpt] = useState<string>("");
+  const gptMutation = trpc.openai.getGptCompletion.useMutation({
+    onSuccess: (data) => {
+      setGpt(data);
+    },
+  });
+
+  const handleGPT = () => {
+    gptMutation.mutate({
+      prompt: `Write a prompt to generate an image that embodies the mood of the following music genres: ${spotify}`,
+    });
   };
 
   return (
     <>
-      <button onClick={handleClick}>click</button>
+      <button onClick={() => spotifyMutation.mutate()}>click spotify</button>
       <div>{spotify}</div>
       <div>{spotifyMutation.isLoading && "loading"}</div>
       <div>{spotifyMutation.isError && "error"}</div>
+      <button onClick={handleGPT}>click GPT</button>
+      <div>{gpt}</div>
+      <div>{gptMutation.isLoading && "loading"}</div>
+      <div>{gptMutation.isError && "error"}</div>
     </>
   );
 };
