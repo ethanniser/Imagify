@@ -2,9 +2,17 @@ import { type FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
+import type { Session } from "next-auth";
 
-const Navbar: FC = () => {
-  const { data: session } = useSession();
+interface Props {
+  initialSession: Session;
+}
+
+const Navbar: FC<Props> = ({ initialSession }) => {
+  let { data: session } = useSession();
+  if (!session) {
+    session = initialSession;
+  }
   const pfpUrl = session?.user?.image ?? "/defaultPFP.png";
   return (
     <nav className="flex w-screen items-center justify-between bg-neutral-900 px-10 py-6">

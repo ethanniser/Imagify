@@ -36,7 +36,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="z-0 min-h-screen bg-neutral-900">
-        <Navbar />
+        <Navbar initialSession={initialSession} />
         <div className="flex flex-col items-center justify-center">
           {!session ? (
             <div className="mt-20">
