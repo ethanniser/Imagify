@@ -2,12 +2,21 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
+import { trpc } from "@utils/trpc";
+import { useState } from "react";
 
 import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
+  const [url, setUrl] = useState<string>("/openAiPlaceholder.png");
+  const imageMutation = trpc.combo.getNewImage.useMutation({
+    onSuccess: (data) => {
+      setUrl(data);
+    },
+  });
+
   return (
     <>
       <Head>
@@ -21,9 +30,19 @@ const Home: NextPage = () => {
       <main className="z-0 min-h-screen bg-neutral-900">
         <Navbar />
         <div className="flex flex-col items-center justify-center">
-          <div className="mt-20">
-            <Blob />
-          </div>
+          {!session ? (
+            <div className="mt-20">
+              <Blob />
+            </div>
+          ) : (
+            <Image
+              src={url}
+              alt="generated image from dalle"
+              height={512}
+              width={512}
+              className="mt-14"
+            />
+          )}
           <div className="mt-20">
             {!session ? (
               <button
@@ -46,11 +65,17 @@ const Home: NextPage = () => {
             ) : (
               <button
                 className="mx-auto flex w-fit rounded-full bg-white px-16 py-4 hover:bg-neutral-300"
-                onClick={() =>
-                  window.alert("Not implemented yet, soon though :)")
-                }
+                onClick={() => {
+                  imageMutation.mutate();
+                }}
               >
-                <span className="">New Image</span>
+                {imageMutation.isLoading ? (
+                  <p>Generating...</p>
+                ) : imageMutation.isError ? (
+                  <p>Error- Please try again.</p>
+                ) : (
+                  <p>Generate Image</p>
+                )}
               </button>
             )}
           </div>
