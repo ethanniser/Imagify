@@ -37,7 +37,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="z-0 min-h-screen bg-neutral-900">
+      <main className=" min-h-screen bg-neutral-900">
         <Navbar initialSession={initialSession} />
         <div className="flex flex-col items-center justify-center">
           {!session ? (
@@ -95,14 +95,15 @@ const Home: NextPage<Props> = ({ initialSession }) => {
               </button>
             )}
           </div>
-          <Image
-            src="/wave.svg"
-            alt="wavey lines"
-            width={1500}
-            height={1500}
-            className="pointer-events-none absolute bottom-0 left-0"
-          />
+          {/* !TODO fix overlap on z */}
         </div>
+        <Image
+          src="/wave.svg"
+          alt="wavey lines"
+          width={1500}
+          height={1500}
+          className="pointer-events-none absolute bottom-0 left-0"
+        />
       </main>
     </>
   );
