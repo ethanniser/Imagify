@@ -20,15 +20,26 @@ const Home: NextPage<Props> = ({ initialSession }) => {
     session = initialSession;
   }
   const [url, setUrl] = useState<string>("/placeholder.png");
-  const imageMutation = trpc.combo.getNewImage.useMutation({
+  const promptMutation = trpc.combo.getPrompt.useMutation({
+    onSuccess: (data) => {
+      imageMutation.mutate(data);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const imageMutation = trpc.combo.getImage.useMutation({
     onSuccess: (data) => {
       setUrl(data);
     },
     onError: (error) => {
-      console.log(error);
+      console.error(error);
     },
   });
 
+  const loading = promptMutation.isLoading || imageMutation.isLoading;
+  const error = promptMutation.isError || imageMutation.isError;
   const [used, setUsed] = useState<boolean>(false);
 
   return (
@@ -48,7 +59,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
             <div className="mt-20">
               <Blob />
             </div>
-          ) : imageMutation.isLoading ? (
+          ) : loading ? (
             <div className="mt-14 flex min-h-[512px] min-w-[512px] items-center justify-center">
               <Dna height={300} width={300} />
             </div>
@@ -84,14 +95,14 @@ const Home: NextPage<Props> = ({ initialSession }) => {
               <button
                 className="mx-auto flex w-fit rounded-full bg-gradient-to-r from-sky-400 to-fuchsia-600 px-16 py-4 hover:scale-110 disabled:bg-neutral-300"
                 onClick={() => {
-                  imageMutation.mutate();
+                  promptMutation.mutate();
                   setUsed(true);
                 }}
-                disabled={imageMutation.isLoading}
+                disabled={loading}
               >
-                {imageMutation.isLoading ? (
+                {loading ? (
                   <p>Generating...</p>
-                ) : imageMutation.isError ? (
+                ) : error ? (
                   <p className="text-red">Error- Please try again.</p>
                 ) : (
                   <p>Generate {used && "Another "}Image</p>
@@ -101,13 +112,6 @@ const Home: NextPage<Props> = ({ initialSession }) => {
           </div>
         </div>
         {/* !TODO fix overlap on z */}
-        {/* <Image
-          src="/wave.svg"
-          alt="wavey lines"
-          width={1500}
-          height={1500}
-          className="pointer-events-none absolute bottom-0 left-0"
-        /> */}
         <Wave className="pointer-events-none absolute bottom-0 left-0" />
       </main>
     </>
