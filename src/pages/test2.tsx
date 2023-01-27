@@ -3,22 +3,32 @@ import { trpc } from "../utils/trpc";
 
 const Test2: FC = () => {
   const [spotify, setSpotify] = useState<string>("");
-  const { mutate, isError, isLoading } = trpc.spotify.getTopArtists.useMutation(
-    {
-      onSuccess: (data) => setSpotify(JSON.stringify(data)),
-    }
-  );
+  const spotifyMutation = trpc.spotify.getTopArtists.useMutation({
+    onSuccess: (data) => {
+      const temp: string[] = [];
+      data
+        .map((artist) => artist.genres)
+        .forEach((genre) =>
+          genre.forEach((g) => {
+            if (!temp.includes(g)) {
+              temp.push(g);
+            }
+          })
+        );
+      setSpotify(temp.join(", "));
+    },
+  });
 
-  const handleClick = async () => {
-    mutate();
+  const handleClick = () => {
+    spotifyMutation.mutate();
   };
 
   return (
     <>
       <button onClick={handleClick}>click</button>
       <div>{spotify}</div>
-      <div>{isLoading && "loading"}</div>
-      <div>{isError && "error"}</div>
+      <div>{spotifyMutation.isLoading && "loading"}</div>
+      <div>{spotifyMutation.isError && "error"}</div>
     </>
   );
 };
