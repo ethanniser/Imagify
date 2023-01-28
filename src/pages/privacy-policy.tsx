@@ -11,18 +11,18 @@ const Home: NextPage = () => {
         <div className="flex items-center justify-center">
           <div className="flex max-w-4xl flex-col items-center justify-center text-center">
             <h1 className="p-20 text-6xl text-zinc-100">Privacy Policy</h1>
-            <p className="py-5 text-zinc-100">
+            <p className="py-5 text-lg text-zinc-100">
               Imagify is a web app powered by the Spotify and OpenAI API{"'"}s.
             </p>
-            <p className="py-5 text-zinc-100">
+            <p className="py-5 text-lg text-zinc-100">
               By choosing to use this app, you agree to the use of your Spotify
               account data, and the ability to view your top songs and artists.
             </p>
-            <p className="py-5 text-zinc-100">
+            <p className="py-5 text-lg text-zinc-100">
               None of the data used by Imagify is shared with any third parties.
               All information is used solely for generating images.
             </p>
-            <p className="py-5 text-zinc-100">
+            <p className="py-5 text-lg text-zinc-100">
               Although you can rest assured that your data is not being stored
               or used maliciously, if you would like to revoke Imagifys
               permissions,{" "}
