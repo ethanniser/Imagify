@@ -9,6 +9,7 @@ import Navbar from "@components/Navbar";
 import Blob from "@components/Blob";
 import type { Session } from "next-auth";
 import Wave from "@components/Wave";
+import Footer from "@components/Footer";
 
 interface Props {
   initialSession: Session | null;
@@ -106,6 +107,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
         </div>
         {/* !TODO fix overlap on z */}
         <Wave className="pointer-events-none absolute bottom-0 left-0" />
+        <Footer />
       </div>
     </>
   );
