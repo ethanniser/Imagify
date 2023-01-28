@@ -63,7 +63,7 @@ const Home: NextPage<Props> = ({ initialSession }) => {
               alt="generated image from dalle"
               height={512}
               width={512}
-              className="mt-14"
+              className="mt-14 min-h-[512px] min-w-[512px]"
             />
           )}
           <div className="mt-20">
