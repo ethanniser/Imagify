@@ -1,28 +1,27 @@
-# Create T3 App
+# [Imagify](imagifymusic.com)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A site that generates images based off your Spotify.
 
-## What's next? How do I make an app with this?
+### Stack
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+- [T3-Stack](https://create.t3.gg/)
+- [Vercel](https://vercel.com)
+  
+### Running Locally
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+This application requires Node.js to run.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```sh
+git clone https://github.com/ethanniser/Imagify.git
+cd ethanniser
+npm i
+npm run dev
+```
 
-## Learn More
+### Contriubuting
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Doubt anyone will, but feel free to open issues and pull requests.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### Cloning / Forking
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+This application is licensed under the [Apache-2.0 license](https://github.com/nexxeln/nexxel.dev/blob/main/LICENSE). Please contact me before copying this site.

@@ -20,6 +20,11 @@ const config = {
         hostname: "i.scdn.co",
         pathname: "/image/*",
       },
+      {
+        protocol: "https",
+        hostname: "oaidalleapiprodscus.blob.core.windows.net",
+        pathname: "/private/**",
+      },
     ],
   },
 };
