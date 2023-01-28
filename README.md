@@ -1,4 +1,4 @@
-# [Imagify](imagifymusic.com)
+# [Imagify](https://imagifymusic.com)
 
 A site that generates images based off your Spotify.
 
