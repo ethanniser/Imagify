@@ -24,4 +24,4 @@ Doubt anyone will, but feel free to open issues and pull requests.
 
 ### Cloning / Forking
 
-This application is licensed under the [Apache-2.0 license](https://github.com/nexxeln/nexxel.dev/blob/main/LICENSE). Please contact me before copying this site.
+This application is licensed under the [Apache-2.0 license](https://github.com/ethanniser/Imagify/blob/main/LICENSE). Please contact me before copying this site.
