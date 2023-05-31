@@ -1,7 +1,7 @@
-**Site is no longer live because I need my free planetscale db for another project.**
+# Site is no longer live because I need my free planetscale db for another project.
 
 
-# [Imagify](https://imagifymusic.com)
+## [Imagify](https://imagifymusic.com)
 
 A site that generates images based off your Spotify.
 
